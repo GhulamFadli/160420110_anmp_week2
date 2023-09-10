@@ -29,8 +29,8 @@
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.a160420110_anmp_week2.ResultFragment"
-        android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
+        android:label="Result"
+        tools:layout="@layout/fragment_result">
         <action
             android:id="@+id/actionMainFragment"
             app:destination="@id/mainFragment" />

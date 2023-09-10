@@ -26,15 +26,15 @@ class GameFragment : Fragment() {
         val txtNum1 = view.findViewById<TextView>(R.id.num1TextView)
         val txtNum2 = view.findViewById<TextView>(R.id.num2TextView)
 
-        val rand1 = (0..100).shuffled().last()
-        val rand2 = (0..100).shuffled().last()
+        val rand1 = generateRandomNumber()
+        val rand2 = generateRandomNumber()
 
         txtNum1.text = rand1.toString()
         txtNum2.text = rand2.toString()
 
         val txtAnswer = view.findViewById<TextView>(R.id.txtAnswer)
 
-        val result = txtNum1.text.toString().toInt() + txtNum2.text.toString().toInt()
+        var result = txtNum1.text.toString().toInt() + txtNum2.text.toString().toInt()
 
 
         if (arguments != null) {
@@ -47,10 +47,12 @@ class GameFragment : Fragment() {
 
         btnAnswer.setOnClickListener {
             if(txtAnswer.text.toString() == result.toString()){
+
                 correctAnswer += 1
 
-                txtNum1.text = (0..100).shuffled().last().toString()
-                txtNum2.text = (0..100).shuffled().last().toString()
+                txtNum1.text = generateRandomNumber().toString()
+                txtNum2.text = generateRandomNumber().toString()
+                result = txtNum1.text.toString().toInt() + txtNum2.text.toString().toInt()
                 txtAnswer.text = ""
             }
             else{
@@ -58,5 +60,8 @@ class GameFragment : Fragment() {
                 Navigation.findNavController(it).navigate(actionRes)
             }
         }
+    }
+    private fun generateRandomNumber(): Int {
+        return (1..100).random() // Generate random numbers between 1 and 10 (adjust as needed)
     }
 }
